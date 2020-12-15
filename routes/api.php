@@ -15,7 +15,7 @@ use App\Http\Controllers\JwtAuthController;
 |
 */
 
-Route::post('register', [JwtAuthController::class, 'register']);
+
 /* Route::middleware('auth:api')->get('/user', function () {
     
 }); */
@@ -24,6 +24,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 ], function () {
+    Route::post('register', [JwtAuthController::class, 'register']);
     Route::post('login', [JwtAuthController::class, 'login']);
     Route::get('user-info', [JwtAuthController::class, 'getUser']);
 });
