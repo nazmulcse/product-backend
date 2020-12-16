@@ -30,5 +30,6 @@ Route::group([
     Route::get('user-info', [JwtAuthController::class, 'getUser']);
     Route::get('product', [ProductController::class, 'getAll']);
     Route::get('product/edit/{id}', [ProductController::class, 'getById']);
-    Route::post('product/update/{id}', [ProductController::class, 'update']);
+    Route::post('product/update', [ProductController::class, 'update']);
+    Route::post('product/delete', [ProductController::class, 'delete']);
 });

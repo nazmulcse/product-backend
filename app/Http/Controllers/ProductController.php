@@ -46,9 +46,30 @@ class ProductController extends Controller
             ], 500);
         }
     }
-    public function update(Request $request ,$productId){
+    public function update(Request $request){
         try{
-            Product::findOrFail($productId)->update($request->all());
+            if(!empty($request->product_id)){
+                Product::findOrFail($request->product_id)->update($request->all());
+            } else {
+                $inputs  = $request->all();
+                $inputs['created_by'] = 1;
+                $inputs['updated_by'] = 1;
+                Product::create($inputs);
+            }
+            return response()->json([
+                'success' => true,
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function delete(Request $request){
+        try{
+            Product::destroy($request->product_id);
             return response()->json([
                 'success' => true,
             ], 200);
