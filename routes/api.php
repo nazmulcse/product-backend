@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JwtAuthController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,7 @@ Route::group([
     Route::post('register', [JwtAuthController::class, 'register']);
     Route::post('login', [JwtAuthController::class, 'login']);
     Route::get('user-info', [JwtAuthController::class, 'getUser']);
+    Route::get('product', [ProductController::class, 'getAll']);
+    Route::get('product/edit/{id}', [ProductController::class, 'getById']);
+    Route::post('product/update/{id}', [ProductController::class, 'update']);
 });
