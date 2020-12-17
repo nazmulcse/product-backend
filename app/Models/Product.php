@@ -21,4 +21,9 @@ class Product extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function getImageAttribute($value)
+    {
+        return 'storage/' . $value;
+    }
 }
