@@ -90,10 +90,22 @@ class JwtAuthController extends Controller
     {
         return response()->json([
             'success' => true,
+            'user' => auth()->user(),
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
+    }
+     /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
     public function getUser(){

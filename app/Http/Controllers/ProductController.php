@@ -55,12 +55,15 @@ class ProductController extends Controller
         try{
             $inputs  = $request->all();
             if(!empty($request->product_id)){
-                $inputs['image'] = $this->uploadImage($request->file('image'), $request->product_id);
+                if(!empty($request->file('image'))){
+                    $inputs['image'] = $this->uploadImage($request->file('image'), $request->product_id);
+                }
+                $inputs['updated_by'] = $inputs['user_id'];
                 Product::findOrFail($request->product_id)->update($inputs);
             } else {
                 $inputs['image'] = $this->uploadImage($request->file('image'));
-                $inputs['created_by'] = 1;
-                $inputs['updated_by'] = 1;
+                $inputs['created_by'] = $inputs['user_id'];
+                $inputs['updated_by'] = $inputs['user_id'];
                 Product::create($inputs);
             }
             return response()->json([
