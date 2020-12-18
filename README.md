@@ -1,4 +1,4 @@
-# Simple Product CRUD api example with Laravel 8 and JWT
+# Simple Product CRUD api example with Laravel 8 and JWT authentication
 Product-Backend
 
 ### Requirements
