@@ -15,7 +15,6 @@ Product-Backend
 2. Navigate to your project directory and run
     ```
     composer install
-    npm install
     php -r "file_exists('.env') || copy('.env.example', '.env');"
     php artisan key:generate
     php artisan migrate
